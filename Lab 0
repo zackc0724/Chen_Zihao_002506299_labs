@@ -1,1 +1,6 @@
 Lab 0/placeholder.txt
+build.xml
+nbproject/
+src/
+   Model/
+       HelloWorld.java
