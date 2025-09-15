@@ -8,11 +8,11 @@ package Model;
  *
  * @author 80424
  */
-class Address {
+public class Address {
     String streetName;
     String unitNum;
     String city;
-    String zipCcode;
+    String zipCode;
 
     public String getStreetName() {
         return streetName;
@@ -39,11 +39,11 @@ class Address {
     }
 
     public String getZipCcode() {
-        return zipCcode;
+        return zipCode;
     }
 
-    public void setZipCcode(String zipCcode) {
-        this.zipCcode = zipCcode;
+    public void setZipCcode(String zipCode) {
+        this.zipCode = zipCode;
     }
     
     
