@@ -4,7 +4,10 @@
  */
 package UI;
 
+import Model.VitalSign;
 import Model.VitalSignHistory;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +22,25 @@ public class ViewJPanel extends javax.swing.JPanel {
     public ViewJPanel(VitalSignHistory vsh) {
         initComponents();
         this.history = vsh;
+        populateTable();
+    }
+
+     private void populateTable() {
+        DefaultTableModel model =(DefaultTableModel)tblVital.getModel();
+        model.setRowCount(0);
+        
+        for(VitalSign vs: history.getHistory()){
+            
+            Object[] row = new Object[5];
+            row[0] = vs.getDate();
+            row[1] = vs.getTemperature();
+            row[2] = vs.getBloodPressure();
+            row[3] = vs.getPulse();
+            row[4] = vs.isIsConcious();
+            
+            model.addRow(row);
+            
+        }
     }
 
     /**
@@ -46,7 +68,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         btnView = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 204, 204));
+        setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblVital.setModel(new javax.swing.table.DefaultTableModel(
@@ -67,43 +89,43 @@ public class ViewJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblVital);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 600, 240));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 700, 300));
 
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
         jLabel1.setText("View Vital Sign History");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
 
         lblDate.setText("Date");
-        add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 30, 10));
+        add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, -1, -1));
 
         lblTemperature.setText("Temperature");
-        add(lblTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 80, 10));
+        add(lblTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, -1, -1));
 
         lblBp.setText("Blood Presure");
-        add(lblBp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, 90, 10));
+        add(lblBp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 530, -1, -1));
 
         lblPulse.setText("Pulse");
-        add(lblPulse, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 540, 90, 10));
+        add(lblPulse, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 570, -1, 20));
 
         lblConcious.setText("Concious Status");
-        add(lblConcious, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 580, 100, 10));
-        add(fieldDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, 210, 20));
-        add(fieldTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 210, 20));
+        add(lblConcious, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 610, -1, -1));
+        add(fieldDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, 210, -1));
+        add(fieldTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 480, 210, -1));
 
         fieldBp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldBpActionPerformed(evt);
             }
         });
-        add(fieldBp, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, 210, 20));
+        add(fieldBp, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 530, 210, -1));
 
         fieldPulse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldPulseActionPerformed(evt);
             }
         });
-        add(fieldPulse, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, 210, 20));
-        add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 580, 90, 20));
+        add(fieldPulse, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 570, 210, -1));
+        add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 610, 70, 20));
 
         btnView.setText("View");
         btnView.addActionListener(new java.awt.event.ActionListener() {
@@ -111,10 +133,15 @@ public class ViewJPanel extends javax.swing.JPanel {
                 btnViewActionPerformed(evt);
             }
         });
-        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, -1, -1));
+        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
 
         btnDelete.setText("Delete");
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, -1, -1));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void fieldBpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldBpActionPerformed
@@ -127,7 +154,50 @@ public class ViewJPanel extends javax.swing.JPanel {
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
+        int selectedRow = tblVital.getSelectedRow();
+        if(selectedRow < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to view","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblVital.getModel();
+        VitalSign selectedVital = (VitalSign)model.getValueAt(selectedRow, 0);
+        
+        if (selectedVital != null){
+            fieldDate.setText(selectedVital.getDate());
+            fieldTemperature.setText(String.valueOf(selectedVital.getTemperature()));
+            fieldBp.setText(String.valueOf(selectedVital.getBloodPressure()));
+            fieldPulse.setText(String.valueOf(selectedVital.getPulse()));
+            
+            if(selectedVital.isIsConcious()){
+                lblStatus.setText("Yes");
+            } else{
+                lblStatus.setText("No");
+            }
+
     }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblVital.getSelectedRow();
+        if(selectedRow < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        DefaultTableModel model = (DefaultTableModel) tblVital.getModel();
+        VitalSign selectedVital = (VitalSign)model.getValueAt(selectedRow, 0);
+        
+        history.deleteVital(selectedVital);
+        
+        JOptionPane.showMessageDialog(this, "Vital Sign deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
+        
+        populateTable();
+        
+        fieldDate.setText("");
+        fieldTemperature.setText("");
+        fieldBp.setText("");
+        fieldPulse.setText("");
+        lblStatus.setText("");
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
