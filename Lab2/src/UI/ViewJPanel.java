@@ -26,22 +26,20 @@ public class ViewJPanel extends javax.swing.JPanel {
     }
 
      private void populateTable() {
-        DefaultTableModel model =(DefaultTableModel)tblVital.getModel();
-        model.setRowCount(0);
-        
-        for(VitalSign vs: history.getHistory()){
-            
-            Object[] row = new Object[5];
-            row[0] = vs.getDate();
-            row[1] = vs.getTemperature();
-            row[2] = vs.getBloodPressure();
-            row[3] = vs.getPulse();
-            row[4] = vs.isIsConcious();
-            
-            model.addRow(row);
-            
-        }
+    DefaultTableModel model = (DefaultTableModel) tblVital.getModel();
+    model.setRowCount(0);
+
+    for (VitalSign vs : history.getHistory()) {
+        Object[] row = new Object[5];
+        row[0] = vs; // store the object itself; toString() will show the date
+        row[1] = vs.getTemperature();
+        row[2] = vs.getBloodPressure();
+        row[3] = vs.getPulse();
+        row[4] = vs.isIsConcious(); // or isConscious() if that's your getter
+        model.addRow(row);
     }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -154,48 +152,49 @@ public class ViewJPanel extends javax.swing.JPanel {
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
-        int selectedRow = tblVital.getSelectedRow();
-        if(selectedRow < 0){
-            JOptionPane.showMessageDialog(this, "Please select a row to view","Warning",JOptionPane.WARNING_MESSAGE);
-        }
-        
-        DefaultTableModel model = (DefaultTableModel) tblVital.getModel();
-        VitalSign selectedVital = (VitalSign)model.getValueAt(selectedRow, 0);
-        
-        if (selectedVital != null){
-            fieldDate.setText(selectedVital.getDate());
-            fieldTemperature.setText(String.valueOf(selectedVital.getTemperature()));
-            fieldBp.setText(String.valueOf(selectedVital.getBloodPressure()));
-            fieldPulse.setText(String.valueOf(selectedVital.getPulse()));
-            
-            if(selectedVital.isIsConcious()){
-                lblStatus.setText("Yes");
-            } else{
-                lblStatus.setText("No");
-            }
+    int selectedRow = tblVital.getSelectedRow();
+    if (selectedRow < 0) {
+        JOptionPane.showMessageDialog(this, "Please select a row to view", "Warning", JOptionPane.WARNING_MESSAGE);
+        return; // important: stop here
+    }
+
+    DefaultTableModel model = (DefaultTableModel) tblVital.getModel();
+    VitalSign selectedVital = (VitalSign) model.getValueAt(selectedRow, 0);
+
+    if (selectedVital != null) {
+        fieldDate.setText(selectedVital.getDate());
+        fieldTemperature.setText(String.valueOf(selectedVital.getTemperature()));
+        fieldBp.setText(String.valueOf(selectedVital.getBloodPressure()));
+        fieldPulse.setText(String.valueOf(selectedVital.getPulse()));
+        lblStatus.setText(selectedVital.isIsConcious() ? "Yes" : "No");
+    }
+
 
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        int selectedRow = tblVital.getSelectedRow();
-        if(selectedRow < 0){
-            JOptionPane.showMessageDialog(this, "Please select a row to delete","Warning",JOptionPane.WARNING_MESSAGE);
-        }
-        DefaultTableModel model = (DefaultTableModel) tblVital.getModel();
-        VitalSign selectedVital = (VitalSign)model.getValueAt(selectedRow, 0);
-        
+    int selectedRow = tblVital.getSelectedRow();
+    if (selectedRow < 0) {
+        JOptionPane.showMessageDialog(this, "Please select a row to delete", "Warning", JOptionPane.WARNING_MESSAGE);
+        return; // important
+    }
+
+    DefaultTableModel model = (DefaultTableModel) tblVital.getModel();
+    VitalSign selectedVital = (VitalSign) model.getValueAt(selectedRow, 0);
+
+    if (selectedVital != null) {
         history.deleteVital(selectedVital);
-        
         JOptionPane.showMessageDialog(this, "Vital Sign deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
-        
         populateTable();
-        
+
+        // clear fields
         fieldDate.setText("");
         fieldTemperature.setText("");
         fieldBp.setText("");
         fieldPulse.setText("");
         lblStatus.setText("");
+    }
 
     }//GEN-LAST:event_btnDeleteActionPerformed
 
