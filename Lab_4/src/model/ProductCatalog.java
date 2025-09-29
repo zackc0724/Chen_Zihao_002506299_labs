@@ -46,4 +46,8 @@ public class ProductCatalog {
     public int getProductCount(){
         return productCatalog.size();
     }
+
+    public Iterable<Product> getProductList() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
