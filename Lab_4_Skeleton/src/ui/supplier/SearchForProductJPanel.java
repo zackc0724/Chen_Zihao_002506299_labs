@@ -10,6 +10,7 @@ import model.Supplier;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -103,7 +104,6 @@ public class SearchForProductJPanel extends javax.swing.JPanel {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
-        
         
 }//GEN-LAST:event_searchButtonActionPerformed
 
