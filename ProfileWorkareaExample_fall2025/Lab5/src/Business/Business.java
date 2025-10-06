@@ -23,9 +23,8 @@ public class Business {
     EmployeeDirectory employeedirectory;
     UserAccountDirectory useraccountdirectory;
     StudentDirectory studentdirectory;
+
     
-
-
     public Business(String n) {
         name = n;
         facultydirectory = new FacultyDirectory();

@@ -10,9 +10,10 @@ import Business.Person.Person;
 import Business.Person.PersonDirectory;
 import Business.Profiles.EmployeeDirectory;
 import Business.Profiles.EmployeeProfile;
+import Business.Profiles.FacultyDirectory;
 import Business.Profiles.StudentDirectory;
 import Business.Profiles.StudentProfile;
-
+import Business.Profiles.FacultyProfile;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
 
@@ -46,7 +47,8 @@ class ConfigureABusiness {
         StudentDirectory studentdirectory = business.getStudentDirectory();
         StudentProfile studentprofile0 = studentdirectory.newStudentProfile(person003);
         
-
+        FacultyDirectory facultydirectory = business.getFacultyDirectory();
+        FacultyProfile facultyprofile0 = facultydirectory.newFacultyProfile(person009);
 
    
 // Create User accounts that link to specific profiles
