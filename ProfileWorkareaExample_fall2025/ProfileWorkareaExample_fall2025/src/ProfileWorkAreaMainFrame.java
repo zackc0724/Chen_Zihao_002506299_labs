@@ -8,7 +8,7 @@ package Business;
 import Business.Profiles.EmployeeProfile;
 import Business.Profiles.Profile;
 import Business.Profiles.StudentProfile;
-
+import Business.Profiles.FacultyProfile;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
 
@@ -32,13 +32,19 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
     public ProfileWorkAreaMainFrame() {
         initComponents();
         business = ConfigureABusiness.initialize();
+        setTitle("Profile Work Area");
+        setLocationRelativeTo(null);             
+        SplitHomeArea.setDividerLocation(220);
+        
         
 
     }
 
     public void insert(JPanel jpanel) {
-
-    }
+    String name = jpanel.getClass().getSimpleName() + "_" + System.nanoTime();
+    CardSequencePanel.add(name, jpanel);
+    ((java.awt.CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, name);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -166,14 +172,13 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
 
         }
 
- /*      if (profile instanceof FacultyProfile) {
+        if (profile instanceof FacultyProfile) {
             facultyworkarea = new FacultyWorkAreaJPanel(business, CardSequencePanel);
             CardSequencePanel.removeAll();
             CardSequencePanel.add("faculty", facultyworkarea);
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
         }
-*/
 
     }//GEN-LAST:event_LoginButtonActionPerformed
 
