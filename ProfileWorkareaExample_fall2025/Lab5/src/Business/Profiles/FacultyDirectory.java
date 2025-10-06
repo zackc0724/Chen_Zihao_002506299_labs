@@ -4,6 +4,7 @@
  */
 package Business.Profiles;
 
+import Business.Business;
 import Business.Person.Person;
 import java.util.ArrayList;
 
