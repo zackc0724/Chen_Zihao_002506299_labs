@@ -14,7 +14,6 @@ import Business.Business;
 import Business.Profiles.StudentProfile;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -22,9 +21,9 @@ import javax.swing.SwingConstants;
  */
 public class StudentWorkAreaJPanel extends javax.swing.JPanel {
 
-    javax.swing.JPanel CardSequencePanel;
-    Business business;
-    StudentProfile student;
+    private javax.swing.JPanel CardSequencePanel;
+    private Business business;
+    private StudentProfile student;
     
     private void insert(javax.swing.JPanel panel) {
     String name = panel.getClass().getSimpleName() + "_" + System.nanoTime();
@@ -41,16 +40,12 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
 
     public StudentWorkAreaJPanel(Business b, StudentProfile spp, JPanel clp) {
 
-        business = b;
+        this.business = b;
         this.CardSequencePanel = clp;
-        student = spp;
-        initComponents();
-
+        this.student = spp;
     }
 
-    private void initComponents() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  
     
     private static class PlaceholderPanel extends javax.swing.JPanel {
     PlaceholderPanel(String title) {
@@ -189,34 +184,23 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCourseWorkIdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseWorkIdentifyResourceAssetsActionPerformed
-        insert(new PlaceholderPanel("Course Work"));
     
     }//GEN-LAST:event_btnCourseWorkIdentifyResourceAssetsActionPerformed
 
     private void btnManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProfileActionPerformed
         // TODO add your handling code here:
-        insert(new PlaceholderPanel("Manage Profile"));
-
-
 }//GEN-LAST:event_btnManageProfileActionPerformed
 
     private void btnGraduationAuditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraduationAuditActionPerformed
         // TODO add your handling code here:
-        insert(new PlaceholderPanel("Graduation Audit"));
-
     }//GEN-LAST:event_btnGraduationAuditActionPerformed
 
     private void btnRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrationActionPerformed
         // TODO add your handling code here:
-
-        CardSequencePanel.removeAll();
-        
 }//GEN-LAST:event_btnRegistrationActionPerformed
 
     private void btnTranscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTranscriptActionPerformed
         // TODO add your handling code here:
-        
-        insert(new PlaceholderPanel("Transcript"));
     }//GEN-LAST:event_btnTranscriptActionPerformed
 
 
