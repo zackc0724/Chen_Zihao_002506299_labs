@@ -45,8 +45,7 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
         this.student = spp;
     }
 
-  
-    
+
     private static class PlaceholderPanel extends javax.swing.JPanel {
     PlaceholderPanel(String title) {
         setLayout(new java.awt.BorderLayout());
