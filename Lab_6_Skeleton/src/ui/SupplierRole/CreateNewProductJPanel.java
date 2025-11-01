@@ -142,13 +142,24 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
+        double price = 0.0;
+        int quantity = 0;
+        
+        
+        try{
+            price = Double.parseDouble(txtPrice.getText());
+            quantity = Integer.parseInt(txtAvailability.getText());
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Please check the price and quantity formats","Info", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+       
         Product p = supplier.getProductCatalog().addProduct();
         p.setProdName(txtName.getText());
-        String stringPrice = txtPrice.getText();
-        if(stringPrice.isEmpty()==false){
-            int price = Integer.parseInt(stringPrice);
-            p.setPrice(price);
-        }
+        p.setPrice(price);
+        p.setAvail(quantity);
+        
         JOptionPane.showMessageDialog(null, "Product added!", "Info", JOptionPane.INFORMATION_MESSAGE);
 }//GEN-LAST:event_btnAddActionPerformed
 
