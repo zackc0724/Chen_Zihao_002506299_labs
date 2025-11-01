@@ -32,6 +32,7 @@ public class MainJFrame extends javax.swing.JFrame {
         supplierDirectory = business.getSupplierDirectory();
         masterOrderList = business.getMasterOrderList();
         
+        
         setSize(830,600);
     }
 
