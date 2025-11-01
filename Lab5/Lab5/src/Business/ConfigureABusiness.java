@@ -22,17 +22,14 @@ public class ConfigureABusiness {
 
         PersonDirectory pd = b.getPersonDirectory();
 
-        // People
         Person adminPerson   = pd.newPerson("System Admin");
         Person studentPerson = pd.newPerson("Student One");
         Person facultyPerson = pd.newPerson("Prof. Ada Faculty");
 
-        // Profiles
         EmployeeProfile adminProfile  = b.getEmployeeDirectory().newEmployeeProfile(adminPerson);
         StudentProfile  studentProfile = b.getStudentDirectory().newStudentProfile(studentPerson);
         FacultyProfile  facultyProfile = b.getFacultyDirectory().newFacultyProfile(facultyPerson);
 
-        // Accounts
         UserAccountDirectory ua = b.getUserAccountDirectory();
         ua.newUserAccount(adminProfile,  "admin",   "admin");
         ua.newUserAccount(studentProfile,"student", "student");

@@ -24,6 +24,10 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel CardSequencePanel;
     private Business business;
     private StudentProfile student;
+
+    public StudentWorkAreaJPanel(Business business, JPanel CardSequencePanel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     private void insert(javax.swing.JPanel panel) {
     String name = panel.getClass().getSimpleName() + "_" + System.nanoTime();

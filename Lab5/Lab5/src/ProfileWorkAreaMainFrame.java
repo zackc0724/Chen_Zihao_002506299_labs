@@ -202,6 +202,7 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
         // TODO add your handling code here:
+        insert(new StudentWorkAreaJPanel(business, CardSequencePanel));
     }//GEN-LAST:event_btnSignupActionPerformed
 
     /**
