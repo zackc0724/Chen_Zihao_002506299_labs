@@ -8,13 +8,14 @@ package ui.CustomerRole;
 import model.Product;
 import model.Supplier;
 import model.SupplierDirectory;
-import ui.SupplierRole.ViewProductDetailJPanel;
+import ui.CustomerRole.ViewProductDetailJPanel;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.MasterOrderList;
+import ui.SupplierRole.SupplierWorkAreaJPanel;
 
 
 /**
@@ -35,6 +36,9 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.supplierDirectory = supplierDirectory;
         this.masterOrderList = masterOrderList;
+        
+        populateCombo();
+        populateProductTable();
         
     }
 
@@ -293,8 +297,11 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSupplierActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
         
+        populateProductTable();
+
+                
     }//GEN-LAST:event_cmbSupplierActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -304,6 +311,20 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
 
     private void btnProductDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductDetailsActionPerformed
         // TODO add your handling code here:
+        
+        int selectedRowIndex = tblProductCatalog.getSelectedRow();
+        if (selectedRowIndex <0) {
+            JOptionPane.showMessageDialog(this, "Please select the product first");
+            return;
+        }
+        
+        Product product = (Product) tblProductCatalog.getValueAt(selectedRowIndex, 0);
+        ViewProductDetailJPanel vpdp = new ViewProductDetailJPanel(userProcessContainer, product);
+        userProcessContainer.add("SupplierWorkAreaJPanel", vpdp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+        
         
     }//GEN-LAST:event_btnProductDetailsActionPerformed
 
@@ -318,6 +339,11 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnModifyQuantityActionPerformed
 
     private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
+        
+        String productName = txtSearch.getText();
+        populateProductTable();
+        
+        
         
     }//GEN-LAST:event_btnSearchProductActionPerformed
 
@@ -355,4 +381,36 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtSalesPrice;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    private void populateCombo() {
+
+        cmbSupplier.removeAllItems();
+        
+        for (Supplier s : supplierDirectory.getSupplierlist()){
+            cmbSupplier.addItem(s);
+        }
+        
+        
+    }
+
+    private void populateProductTable(String keyword) {
+
+        DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
+        model.setRowCount(0);
+
+        for (Supplier s:supplierDirectory.getSupplierlist()){
+        
+            for (Product p : s.getProductCatalog().getProductcatalog()) {
+                if(p.getProdName().equalsIgnoreCase(keyword)){
+        
+                    Object row[] = new Object[4];
+                    row[0] = p;
+                    row[1] = p.getModelNumber();
+                    row[2] = p.getPrice();
+                    row[3] = p.getAvail();
+                    model.addRow(row);
+                }
+            }
+        }
+    }
 }

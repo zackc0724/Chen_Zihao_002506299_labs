@@ -17,9 +17,20 @@ import javax.swing.JPanel;
 public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
 
+    JPanel userProcessContainer;
+    Product product;
+    
     /** Creates new form CreateProductJPanel */
-    public ViewProductDetailJPanel() {
+    public ViewProductDetailJPanel(JPanel userProcessContainer, Product product) {
         initComponents();
+        
+        this.userProcessContainer = userProcessContainer;
+        this.product = product;
+        
+        txtProdName.setText(product.getProdName());
+        txtID.setText(String.valueOf(product.getModelNumber()));
+        txtPrice.setText(String.valueOf(product.getPrice()));
+        txtAvail.setText(String.valueOf(product.getAvail()));
         
     }
     
@@ -33,11 +44,11 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        nameField = new javax.swing.JTextField();
+        txtProdName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
         backButton1 = new javax.swing.JButton();
-        idField = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtAvail = new javax.swing.JTextField();
@@ -49,7 +60,7 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Product Name:");
 
-        nameField.setEditable(false);
+        txtProdName.setEditable(false);
 
         jLabel3.setText("Price:");
 
@@ -62,7 +73,7 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
             }
         });
 
-        idField.setEditable(false);
+        txtID.setEditable(false);
 
         jLabel5.setText("Product ID:");
 
@@ -89,14 +100,14 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProdName, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAvail, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(161, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {idField, nameField, txtAvail, txtPrice});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtAvail, txtID, txtPrice, txtProdName});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,11 +118,11 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1))
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProdName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -133,15 +144,15 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton1;
-    private javax.swing.JTextField idField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField nameField;
     private javax.swing.JTextField txtAvail;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtProdName;
     // End of variables declaration//GEN-END:variables
     
 }
