@@ -76,7 +76,6 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnCustomer.setText("Customer");
-        btnCustomer.setEnabled(false);
         btnCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCustomerActionPerformed(evt);
@@ -148,7 +147,11 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSupplierActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
-
+        
+        LoginSupplierJPanel ls = new LoginSupplierJPanel(userProcessContainer, supplierDirectory);
+        userProcessContainer.add("LoginSupplierJPanel", ls);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCustomerActionPerformed
 
     /**
