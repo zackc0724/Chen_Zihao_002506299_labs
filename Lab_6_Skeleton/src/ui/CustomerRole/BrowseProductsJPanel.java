@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.MasterOrderList;
+import model.OrderItem;
 import ui.SupplierRole.SupplierWorkAreaJPanel;
 
 
@@ -386,6 +387,41 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
             return;
         }
         
+        if (salesPrice < product.getPrice()) {
+            JOptionPane.showMessageDialog(this, "Price should be more than it is set in the price.");
+            return;
+        }
+        
+        OrderItem item = currentOrder.findProduct(product);
+        
+        if (item == null) {
+            
+            if (product.getAvail() >= quant) {
+                
+                currentOrder.addNewOrderItem(product, salesPrice, quant);
+                product.setAvail(product.getAvail() - quant);
+                
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "Please checkproduct availability");
+                return;
+            }
+        } else {
+            
+            int oldQuant = item.getQuantity();
+            if (item.getProduct().getAvail() + oldQuant < quant) {
+                JOptionPane.showMessageDialog(this, "Please check product availability.");
+                return;
+            }
+        
+            item.getProduct().setAvail(item.getProduct().getAvail()+oldQuant-quant);
+            item.setQuantity(quant);
+        }
+        
+        populateProductTable();
+        populateCartTable();
+        
+        
     }//GEN-LAST:event_btnAddToCartActionPerformed
 
     
@@ -426,6 +462,45 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
         
     }
 
+    private void populateProductTable() {
+
+        Supplier selectedSupplier = (Supplier) cmbSupplier.getSelectedItem();
+        
+        if (selectedSupplier == null) {
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
+        model.setRowCount(0);
+        
+            for (Product p : selectedSupplier.getProductCatalog().getProductcatalog()) {
+                    Object row[] = new Object[4];
+                    row[0] = p;
+                    row[1] = p.getModelNumber();
+                    row[2] = p.getPrice();
+                    row[3] = p.getAvail();
+                    model.addRow(row);
+                }
+            }
+            
+    
+    private void populateCartTable() {
+        
+        DefaultTableModel model = (DefaultTableModel) tblCart.getModel();
+        model.setRowCount(0);
+        
+            for (OrderItem oi : currentOrder.getOrderItemList()) {
+                    Object row[] = new Object[4];
+                    row[0] = oi;
+                    row[1] = oi.getSalesPrice();
+                    row[2] = oi.getQuantity();
+                    row[3] = oi.getQuantity() * oi.getSalesPrice();
+                    model.addRow(row);
+                }
+        
+    }
+    
+    
     private void populateProductTable(String keyword) {
 
         DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
