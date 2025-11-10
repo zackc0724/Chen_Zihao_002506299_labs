@@ -95,5 +95,6 @@ public class SocialMedia_Main {
     private void runAnalysis(){
         // TODO
         helper.getAverageLikesPerComments();
+        helper.getMaxLikeCommentPost();
     }
 }
