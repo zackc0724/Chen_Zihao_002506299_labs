@@ -31,7 +31,7 @@ public class AnalysisHelper {
             likeNumber += c.getLikes();
         }
         
-        System.out.println("Average number of likes per comments: " + likeNumber / commentNumber);
+        System.out.println("Q1 - Average number of likes per comments: " + likeNumber / commentNumber);
             
     }
     
